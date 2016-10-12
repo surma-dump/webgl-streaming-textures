@@ -1,0 +1,17 @@
+{
+  "name": "webglloader",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "Surma",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "express": "^4.14.0",
+    "spdy": "^3.4.3",
+    "systemjs": "^0.19.39",
+    "three": "git+https://github.com/mrdoob/three.js.git",
+    "throttle": "^1.0.3"
+  },
+  "scripts": {
+    "install": "convert -quality 100 -interlace Plane source_texture.jpg big_texture.jpg"
+  }
+}
