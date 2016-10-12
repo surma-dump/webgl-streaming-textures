@@ -5,9 +5,12 @@
 // Load shaders as text
 System.config({
   map: {
+    // ThreeJS `imports` shaders to load their contents. SystemJS
+    // can do that with this plugin.
     text: 'node_modules/systemjs-plugin-text/text.js'
   },
   meta: {
+    // Here we map the .glsl extension to the text loader plugin.
     '*.glsl': {
       loader: 'text'
     }
@@ -15,7 +18,7 @@ System.config({
 });
 </script>
 <script>
-// Manual load to resolve cyclic dependecy
+// Manually load `Sphere` to resolve cyclic dependecy.
 SystemJS.import('/node_modules/three/src/math/Sphere')
   .then(_ => SystemJS.import('main.js'));
 </script>

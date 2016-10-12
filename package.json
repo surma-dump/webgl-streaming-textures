@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "babel-core": "^6.17.0",
-    "babel-preset-es2015": "^6.16.0",
+    "babel-plugin-transform-es2015-modules-systemjs": "^6.14.0",
     "express": "^4.14.0",
     "spdy": "^3.4.3",
     "systemjs": "^0.19.39",
@@ -15,6 +15,7 @@
     "throttle": "^1.0.3"
   },
   "scripts": {
-    "install": "convert -quality 100 -interlace Plane source_texture.jpg big_texture.jpg"
+    "gen-texture": "convert -quality 100 -interlace Plane source_texture.jpg static/big_texture.jpg",
+    "server": "node server.js"
   }
 }

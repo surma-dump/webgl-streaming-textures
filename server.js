@@ -9,7 +9,6 @@ const url = require('url');
 const babel = require('babel-core');
 
 const babelConfig = {
-  presets: [require('babel-preset-es2015')],
   plugins: [require('babel-plugin-transform-es2015-modules-systemjs')]
 };
 
@@ -17,15 +16,13 @@ const app = express();
 
 app.get('/big_texture.jpg', (req, res) => {
   const throttle = new throttlePipe(100000); // 100kb/s
-  fs.createReadStream('big_texture.jpg')
+  fs.createReadStream('static/big_texture.jpg')
     .pipe(throttle)
     .pipe(res);
 });
 
-app.get([
-  '/node_modules/three/*',
-  '/main.js'
-], (req, res, next) => {
+// ThreeJS needs to be transpiled to SystemJS modules.
+app.get('/node_modules/three/*', (req, res, next) => {
   let filename = url.parse(req.url).path.slice(1);
   // fallthrough to static middleware for shaders
   if (filename.endsWith('.glsl')) {
@@ -45,10 +42,14 @@ app.get([
     res.send(result.code);
   });
 });
-app.use(express.static('.'));
+// Serve node_modules folder
+app.use('/node_modules', express.static('./node_modules'));
+// Serve static folder
+app.use(express.static('static'));
 
 const config = {
   key: fs.readFileSync('key.pem'),
   cert: fs.readFileSync('cert.pem')
 };
+console.log('Starting HTTP/2 server on https://localhost:8080');
 spdy.createServer(config, app).listen(8080);
