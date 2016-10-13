@@ -8,6 +8,7 @@ define([
   '/node_modules/three/src/objects/Mesh.js',
   '/node_modules/three/src/renderers/WebGLRenderer.js',
   '/node_modules/three/src/scenes/Scene.js',
+  '/node_modules/pdf.js/src/core/jpg.js',
   'rofltextures.js'
 ],
 (
@@ -18,10 +19,19 @@ define([
   {Mesh},
   {WebGLRenderer},
   {Scene},
+  {JpegImage},
   {SwitchingTexture}
 ) => {
-
-  // This is the code from ThreeJS’s cube example:
+  fetch('/jpeg.jpg')
+    .then(resp => resp.arrayBuffer())
+    .then(data => {
+      const instance = new JpegImage();
+      instance.parse(data);
+      const rgb = instace.getData(300, 300, true);
+      console.log(rgb);
+    });
+  return;
+  // This is a slighty modified version of ThreeJS’s cube example:
   // @see https://threejs.org/examples/#webgl_geometry_cube
   var camera, scene, renderer;
   var mesh;

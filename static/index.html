@@ -7,7 +7,9 @@ System.config({
   map: {
     // ThreeJS `imports` shaders to load their contents. SystemJS
     // can do that with this plugin.
-    text: 'node_modules/systemjs-plugin-text/text.js'
+    text: 'node_modules/systemjs-plugin-text/text.js',
+    // Manual name-to-path mapping for the JPG decoder
+    'pdfjs/shared/util': '/node_modules/pdf.js/src/shared/util.js'
   },
   meta: {
     // Here we map the .glsl extension to the text loader plugin.
