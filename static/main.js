@@ -1,13 +1,13 @@
 // Only load the things we need.
 
 Promise.all([
-  SystemJS.import('/node_modules/three/src/cameras/PerspectiveCamera.js'),
-  SystemJS.import('/node_modules/three/src/loaders/TextureLoader.js'),
-  SystemJS.import('/node_modules/three/src/geometries/BoxBufferGeometry.js'),
-  SystemJS.import('/node_modules/three/src/materials/MeshBasicMaterial.js'),
-  SystemJS.import('/node_modules/three/src/objects/Mesh.js'),
-  SystemJS.import('/node_modules/three/src/renderers/WebGLRenderer.js'),
-  SystemJS.import('/node_modules/three/src/scenes/Scene.js')
+  SystemJS.import('/threejs/cameras/PerspectiveCamera.js'),
+  SystemJS.import('/threejs/loaders/TextureLoader.js'),
+  SystemJS.import('/threejs/geometries/BoxBufferGeometry.js'),
+  SystemJS.import('/threejs/materials/MeshBasicMaterial.js'),
+  SystemJS.import('/threejs/objects/Mesh.js'),
+  SystemJS.import('/threejs/renderers/WebGLRenderer.js'),
+  SystemJS.import('/threejs/scenes/Scene.js')
 ])
 .then(([{PerspectiveCamera}, {TextureLoader}, {BoxBufferGeometry}, {MeshBasicMaterial}, {Mesh}, {WebGLRenderer}, {Scene}]) => {
 
@@ -22,7 +22,7 @@ Promise.all([
     camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
     camera.position.z = 400;
     scene = new Scene();
-    var texture = new TextureLoader().load( 'big_texture.jpg' );
+    var texture = new TextureLoader().load( 'texture.png' );
     var geometry = new BoxBufferGeometry( 200, 200, 200 );
     var material = new MeshBasicMaterial( { map: texture } );
     mesh = new Mesh( geometry, material );
