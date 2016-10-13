@@ -7,9 +7,10 @@ Promise.all([
   SystemJS.import('/node_modules/three/src/materials/MeshBasicMaterial.js'),
   SystemJS.import('/node_modules/three/src/objects/Mesh.js'),
   SystemJS.import('/node_modules/three/src/renderers/WebGLRenderer.js'),
-  SystemJS.import('/node_modules/three/src/scenes/Scene.js')
+  SystemJS.import('/node_modules/three/src/scenes/Scene.js'),
+  SystemJS.import('rofltextures.js')
 ])
-.then(([{PerspectiveCamera}, {TextureLoader}, {BoxBufferGeometry}, {MeshBasicMaterial}, {Mesh}, {WebGLRenderer}, {Scene}]) => {
+.then(([{PerspectiveCamera}, {TextureLoader}, {BoxBufferGeometry}, {MeshBasicMaterial}, {Mesh}, {WebGLRenderer}, {Scene}, {SwitchingTexture}]) => {
 
   // This is the code from ThreeJS’s cube example:
   // @see https://threejs.org/examples/#webgl_geometry_cube
@@ -22,7 +23,8 @@ Promise.all([
     camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
     camera.position.z = 400;
     scene = new Scene();
-    var texture = new TextureLoader().load( 'big_texture.jpg' );
+    // var texture = new TextureLoader().load( 'big_texture.jpg' );
+    var texture = SwitchingTexture;
     var geometry = new BoxBufferGeometry( 200, 200, 200 );
     var material = new MeshBasicMaterial( { map: texture } );
     mesh = new Mesh( geometry, material );
@@ -45,6 +47,8 @@ Promise.all([
     requestAnimationFrame( animate );
     mesh.rotation.x += 0.005;
     mesh.rotation.y += 0.01;
+    // mesh.material.map = mesh.material.map === RedTexture ? BlueTexture : RedTexture;
+    mesh.material.needsUpdate = true;
     renderer.render( scene, camera );
   }
 });

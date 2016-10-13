@@ -26,10 +26,9 @@ app.get('/node_modules/three/*', (req, res, next) => {
   let filename = url.parse(req.url).path.slice(1);
   // fallthrough to static middleware for shaders
   if (filename.endsWith('.glsl')) {
-    next();
-    return;
+    return next();
   }
-  // Since we are transpiling, some imports won’t have .js extension
+  // Since the imports are transpiled, some requests won’t have .js extension
   if (!filename.endsWith('.js')) {
     filename += '.js';
   }
