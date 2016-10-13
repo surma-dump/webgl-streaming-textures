@@ -42,6 +42,7 @@ gulp.src([
   .pipe(gulp.dest('dist'));
 
 const app = express();
+app.use(require('compression')());
 // Import strings don't necessarily end on `.js`,
 // so add that if needed.
 app.get('/threejs/*', (req, res, next) => {
