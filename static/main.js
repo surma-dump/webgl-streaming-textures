@@ -1,16 +1,25 @@
 // Only load the things we need.
 
-Promise.all([
-  SystemJS.import('/node_modules/three/src/cameras/PerspectiveCamera.js'),
-  SystemJS.import('/node_modules/three/src/loaders/TextureLoader.js'),
-  SystemJS.import('/node_modules/three/src/geometries/BoxBufferGeometry.js'),
-  SystemJS.import('/node_modules/three/src/materials/MeshBasicMaterial.js'),
-  SystemJS.import('/node_modules/three/src/objects/Mesh.js'),
-  SystemJS.import('/node_modules/three/src/renderers/WebGLRenderer.js'),
-  SystemJS.import('/node_modules/three/src/scenes/Scene.js'),
-  SystemJS.import('rofltextures.js')
-])
-.then(([{PerspectiveCamera}, {TextureLoader}, {BoxBufferGeometry}, {MeshBasicMaterial}, {Mesh}, {WebGLRenderer}, {Scene}, {SwitchingTexture}]) => {
+define([
+  '/node_modules/three/src/cameras/PerspectiveCamera.js',
+  '/node_modules/three/src/loaders/TextureLoader.js',
+  '/node_modules/three/src/geometries/BoxBufferGeometry.js',
+  '/node_modules/three/src/materials/MeshBasicMaterial.js',
+  '/node_modules/three/src/objects/Mesh.js',
+  '/node_modules/three/src/renderers/WebGLRenderer.js',
+  '/node_modules/three/src/scenes/Scene.js',
+  'rofltextures.js'
+],
+(
+  {PerspectiveCamera},
+  {TextureLoader},
+  {BoxBufferGeometry},
+  {MeshBasicMaterial},
+  {Mesh},
+  {WebGLRenderer},
+  {Scene},
+  {SwitchingTexture}
+) => {
 
   // This is the code from ThreeJS’s cube example:
   // @see https://threejs.org/examples/#webgl_geometry_cube
