@@ -10,7 +10,7 @@ const babel = require('gulp-babel');
 const babelConfig = {
   comments: false,
   presets: [require('babel-preset-babili')],
-  plugins: [require('babel-plugin-transform-es2015-modules-systemjs')]
+  plugins: [require('babel-plugin-transform-es2015-modules-amd')]
 };
 
 // ES2015 modules -> SystemJS modules
@@ -20,24 +20,27 @@ gulp.src([
   .pipe(babel(babelConfig))
   .pipe(gulp.dest('dist/threejs'));
 
-// ES2015 modules -> SystemJS modules
-gulp.src([
-  'static/*.js',
-])
-  .pipe(babel(babelConfig))
-  .pipe(gulp.dest('dist/'));
-
 // Plain copy
 gulp.src(['node_modules/three/src/**/*.glsl'])
   .pipe(gulp.dest('dist/threejs'));
 
-// Plain copy
+// Minify
 gulp.src([
+  'static/*.js',
   'node_modules/three/build/three.min.js',
   'node_modules/systemjs-plugin-text/text.js',
+  'node_modules/systemjs/dist/system.js'
+])
+  .pipe(babel({
+    comments: false,
+    // presets: [require('babel-preset-babili')]
+  }))
+  .pipe(gulp.dest('dist'));
+
+// Plain copy
+gulp.src([
   'static/*.html',
   'static/*.{jpg,png}',
-  'node_modules/systemjs/dist/system.js'
 ])
   .pipe(gulp.dest('dist'));
 

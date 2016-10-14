@@ -1,15 +1,14 @@
 // Only load the things we need.
 
-Promise.all([
-  SystemJS.import('/threejs/cameras/PerspectiveCamera.js'),
-  SystemJS.import('/threejs/loaders/TextureLoader.js'),
-  SystemJS.import('/threejs/geometries/BoxBufferGeometry.js'),
-  SystemJS.import('/threejs/materials/MeshBasicMaterial.js'),
-  SystemJS.import('/threejs/objects/Mesh.js'),
-  SystemJS.import('/threejs/renderers/WebGLRenderer.js'),
-  SystemJS.import('/threejs/scenes/Scene.js')
-])
-.then(([{PerspectiveCamera}, {TextureLoader}, {BoxBufferGeometry}, {MeshBasicMaterial}, {Mesh}, {WebGLRenderer}, {Scene}]) => {
+define([
+  '/threejs/cameras/PerspectiveCamera.js',
+  '/threejs/loaders/TextureLoader.js',
+  '/threejs/geometries/BoxBufferGeometry.js',
+  '/threejs/materials/MeshBasicMaterial.js',
+  '/threejs/objects/Mesh.js',
+  '/threejs/renderers/WebGLRenderer.js',
+  '/threejs/scenes/Scene.js'
+], ([{PerspectiveCamera}, {TextureLoader}, {BoxBufferGeometry}, {MeshBasicMaterial}, {Mesh}, {WebGLRenderer}, {Scene}]) => {
 
   // This is the code from ThreeJS’s cube example:
   // @see https://threejs.org/examples/#webgl_geometry_cube
